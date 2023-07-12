@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'package:coincircle/services/http_service.dart';
 import 'package:coincircle/widgets/coin_dropdown.dart';
+import 'package:coincircle/widgets/coin_image.dart';
 import 'package:coincircle/widgets/current_price.dart';
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
@@ -13,7 +14,8 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
-  double? _deviceHeight, _deviceWidth;
+  /// The device height and width
+  late double _deviceHeight, _deviceWidth;
 
   /// The HttpService singleton
   HttpService? _http;
@@ -58,6 +60,10 @@ class _HomeState extends State<Home> {
               crossAxisAlignment: CrossAxisAlignment.center,
               mainAxisSize: MainAxisSize.max,
               children: [
+                coinImag(
+                    imgUrl: data['image']['large'],
+                    deviceWidth: _deviceWidth,
+                    deviceHeight: _deviceHeight),
                 currentPrice(usdPrice),
                 percentageChanger(usdPriceChange)
               ]);
