@@ -5,7 +5,7 @@ import 'package:get_it/get_it.dart';
 
 var console = Logger();
 
-/// The Dio instance to use for all requests
+/// A service to make HTTP 'GET' requests to the CoinGecko API
 class HttpService {
   final Dio _dio = Dio();
 
