@@ -20,15 +20,18 @@ class HttpService {
   }
 
   /// Make a 'GET' request to the CoinGecko API
-  Future<Response?> getData(String endpoint) async {
+  Stream<Response?> getData(String endpoint) async* {
     try {
-      String fullUrl = "$_rootUrl$endpoint";
-      Response<dynamic> response = await _dio.get(fullUrl);
-      return response;
+      while (true) {
+        String fullUrl = "$_rootUrl$endpoint";
+        Response<dynamic> response = await _dio.get(fullUrl);
+        await Future.delayed(const Duration(seconds: 5));
+        yield response;
+      }
     } catch (error) {
       console.d('HttpService error');
       console.d(error);
-      throw Exception('HttpService error');
+      // throw Exception('HttpService error');
     }
   }
 }
