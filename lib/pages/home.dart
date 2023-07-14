@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'package:coincircle/services/http_service.dart';
+import 'package:coincircle/widgets/coin_desc.dart';
 import 'package:coincircle/widgets/coin_dropdown.dart';
 import 'package:coincircle/widgets/coin_image.dart';
 import 'package:coincircle/widgets/current_price.dart';
@@ -7,7 +8,9 @@ import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
 
 class Home extends StatefulWidget {
-  const Home({super.key});
+  final String? coinId;
+
+  const Home(this.coinId, {super.key});
 
   @override
   State<Home> createState() => _HomeState();
@@ -39,16 +42,16 @@ class _HomeState extends State<Home> {
         mainAxisSize: MainAxisSize.max,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: <Widget>[
-          const CoinDropDown(),
-          _data(),
+          CoinDropDown(widget.coinId),
+          _data(widget.coinId!),
         ],
       ),
     )));
   }
 
-  Widget _data() {
+  Widget _data(String coinId) {
     return StreamBuilder(
-      stream: _http?.getData('/coins/bitcoin'),
+      stream: _http?.getData('/coins/$coinId'),
       builder: (BuildContext context, AsyncSnapshot snapshot) {
         if (snapshot.hasData) {
           Map data = jsonDecode(snapshot.data.toString());
@@ -63,9 +66,12 @@ class _HomeState extends State<Home> {
                 coinImag(
                     imgUrl: data['image']['large'],
                     deviceWidth: _deviceWidth,
-                    deviceHeight: _deviceHeight),
+                    deviceHeight: _deviceHeight,
+                    context: context),
                 currentPrice(usdPrice),
-                percentageChanger(usdPriceChange)
+                percentageChanger(usdPriceChange),
+                description(
+                    data["description"]["en"], _deviceHeight, _deviceWidth)
               ]);
         } else {
           return const Center(

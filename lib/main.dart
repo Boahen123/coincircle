@@ -1,4 +1,5 @@
 import 'package:coincircle/services/http_service.dart';
+import 'package:coincircle/widgets/coin_page.dart';
 import 'package:flutter/material.dart';
 import 'package:coincircle/pages/home.dart';
 import 'data/app_config.dart';
@@ -17,13 +18,16 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      routes: {
+        '/coinPage': (context) => const CoinPage(),
+      },
       title: 'CoinCircle',
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.blue),
         useMaterial3: true,
         scaffoldBackgroundColor: Colors.blue,
       ),
-      home: const Home(),
+      home: const Home('bitcoin'),
     );
   }
 }

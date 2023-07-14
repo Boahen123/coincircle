@@ -25,13 +25,12 @@ class HttpService {
       while (true) {
         String fullUrl = "$_rootUrl$endpoint";
         Response<dynamic> response = await _dio.get(fullUrl);
-        await Future.delayed(const Duration(seconds: 5));
+        await Future.delayed(const Duration(seconds: 10));
         yield response;
       }
     } catch (error) {
       console.d('HttpService error');
       console.d(error);
-      // throw Exception('HttpService error');
     }
   }
 }
