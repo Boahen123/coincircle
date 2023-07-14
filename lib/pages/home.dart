@@ -58,6 +58,7 @@ class _HomeState extends State<Home> {
           num usdPrice = data['market_data']['current_price']['usd'];
           num usdPriceChange =
               data['market_data']['price_change_percentage_24h'];
+          Map currentPrices = data['market_data']['current_price'];
           return Column(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               crossAxisAlignment: CrossAxisAlignment.center,
@@ -67,7 +68,8 @@ class _HomeState extends State<Home> {
                     imgUrl: data['image']['large'],
                     deviceWidth: _deviceWidth,
                     deviceHeight: _deviceHeight,
-                    context: context),
+                    context: context,
+                    currentPrices: currentPrices),
                 currentPrice(usdPrice),
                 percentageChanger(usdPriceChange),
                 description(

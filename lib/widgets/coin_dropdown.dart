@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 final List<String> coins = [
   "bitcoin",
   "ethereum",
-  "litecoin",
   "dogecoin",
   "tether",
   "ripple",
@@ -29,12 +28,7 @@ class CoinDropDown extends StatefulWidget {
 }
 
 class _CoinDropDownState extends State<CoinDropDown> {
-  String? _dropDownValue;
-
   void _dropDownCallback(String? newValue) {
-    setState(() {
-      _dropDownValue = newValue;
-    });
     Navigator.pushNamed(
       context,
       '/coinPage',

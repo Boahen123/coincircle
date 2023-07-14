@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:html/parser.dart';
 
+/// Widget to display the coin description
 Widget description(
     String description, double? deviceHeight, double? deviceWidth) {
   var document = parse(description);

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:coincircle/pages/home.dart';
 
+/// Page to display the selected coin
 class CoinPage extends StatefulWidget {
   const CoinPage({super.key});
 
