@@ -50,8 +50,8 @@ class _HomeState extends State<Home> {
   }
 
   Widget _data(String coinId) {
-    return StreamBuilder(
-      stream: _http?.getData('/coins/$coinId'),
+    return FutureBuilder(
+      future: _http?.getData('/coins/$coinId'),
       builder: (BuildContext context, AsyncSnapshot snapshot) {
         if (snapshot.hasData) {
           Map data = jsonDecode(snapshot.data.toString());
