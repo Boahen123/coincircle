@@ -8,4 +8,4 @@ Find information and current rates of select crytocurrencies.
 
 ### Screenshot
 
-<img src="./assets/images/screenshot.png">
+<img src="./assets/images/screenshot.png" width="250" height="500">
